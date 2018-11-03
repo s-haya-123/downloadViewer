@@ -1,0 +1,22 @@
+{
+    "name": "Chrome Ext",
+    "manifest_version": 2,
+    "description": "タブの情報を表示します",
+    "version": "1.0",
+    "content_scripts": [
+        {
+            "matches":  ["http://*/*", "https://*/*"],
+            "js": [
+                "injection.js",
+                "main.js",
+                "polyfills.js",
+                "runtime.js",
+                "styles.js",
+                "vendor.js"
+            ]
+        }
+    ],
+    "permissions": [
+      "tabs"
+    ]
+  }
