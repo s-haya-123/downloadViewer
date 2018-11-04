@@ -31,7 +31,7 @@ export class ImageComponent  {
     console.log(tweet);
     this._tweet = tweet;
     this.id = this._tweet["id_str"];
-    this.url = this._tweet['src'][0];
+    this.url = this._tweet['src'];
     this.caption = this._tweet['text'].replace(/https:.*/,"");
   }
   getTag(tweet):undefined{

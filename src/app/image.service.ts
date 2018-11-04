@@ -9,9 +9,23 @@ export class ImageService {
   constructor() { }
   getTweets():Object[]{
     let items = document.getElementById("stream-items-id").children;
+    let tweets = [];
+    Array.from(items).forEach(item=>{
+      let tweet = this.getTweet(item);
+      tweets = tweets.concat(this.divideTweet(tweet));
+    });
     this.clearDoc();
-    let tweet = this.getTweet(items[0]);
-    return [tweet];
+    return tweets;
+  }
+
+  divideTweet(tweet):object[]{
+    if(tweet.src.length === 0){
+      return [tweet];
+    } else {
+      return tweet.src.map(url=>{
+        return {src:url,text:tweet.text};
+      });
+    }
   }
 
   getTweet(item:Element):Object{
