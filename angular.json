@@ -22,7 +22,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/manifest.json",
-              "src/injection.js"
+              "src/injection.js",
+              "src/materialized.min.css"
             ],
             "styles": [
               "src/styles.css"
