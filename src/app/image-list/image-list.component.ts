@@ -18,6 +18,9 @@ export class ImageListComponent implements OnInit,OnChanges {
   }
   ngOnInit() {
     this.tweets = this.imgService.getTweets();
+    this.imgService.tweetsChange.subscribe(tweets=>{
+      this.tweets=this.tweets.concat(tweets);
+    })
   }
 
   

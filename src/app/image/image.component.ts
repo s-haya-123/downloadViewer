@@ -28,7 +28,6 @@ export class ImageComponent  {
   }
   @Input()
   set tweet(tweet: object){
-    console.log(tweet);
     this._tweet = tweet;
     this.id = this._tweet["id_str"];
     this.url = this._tweet['src'];
