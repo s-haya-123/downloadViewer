@@ -1,11 +1,15 @@
 <div class="col s6 m3 l2">
     <div class="card hoverable">
         <div class="card-image">
-          <img [src]="url">
+          <a href="https://twitter.com/{{screenName}}/status/{{id}}"><img [src]="url"></a>
         </div>
         <div class="hide-on-med-and-down card-content black-text">
           <p>
-            {{caption}}</p>
+            {{caption}}
+          </p>  
+          <p class="card-action">
+            rt:{{rt}}, like:{{like}}
+          </p>
         </div>
       </div>
 </div>

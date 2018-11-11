@@ -5,7 +5,7 @@
     "version": "1.0",
     "content_scripts": [
         {
-            "matches":  ["http://*/*", "https://twitter.com/*/*"],
+            "matches":  [ "https://twitter.com/*/likes"],
             "js": [
                 "injection.js",
                 "main.js",
@@ -15,7 +15,8 @@
                 "vendor.js"
             ],
             "css":[
-                "materialized.min.css"
+                "materialized.min.css",
+                "icon.css"
             ]
         }
     ],

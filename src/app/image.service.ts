@@ -30,7 +30,7 @@ export class ImageService {
       this.clearElement();
     });
     let stream = document.getElementById("stream-items-id");
-    observer.observe(stream,{childList: true})
+    observer.observe(stream,{childList: true});
     return;
   }
 
@@ -43,25 +43,33 @@ export class ImageService {
     });
     this.clearElement();
     this.clearElementClass();
-    // this.clearDoc();
     return tweets;
   }
 
   divideTweet(tweet):object[]{
-    if(tweet.src.length === 0){
+    if( tweet.src.length === 0){
       return [tweet];
     } else {
       return tweet.src.map(url=>{
-        return {src:url,text:tweet.text};
+        let copyTweet = JSON.parse(JSON.stringify(tweet));
+        copyTweet.src = url;
+        return copyTweet;
       });
     }
   }
 
   getTweet(item:Element):Object{
-    let contain=item.getElementsByClassName("AdaptiveMedia-container")[0].children[0];
-    let text=(<HTMLBodyElement>item.getElementsByClassName("TweetTextSize")[0]).innerText
-    let src = this.searchImgs(contain);
-    return {src:src,text:text};
+    let info = item.children[0];
+    let name = item.getAttribute("data-name");
+    let screenName = info.getAttribute("data-screen-name");
+    let id = info.getAttribute("data-tweet-id");
+    let actionCount = item.getElementsByClassName("ProfileTweet-actionCountForPresentation");
+    let rt = (<HTMLElement>actionCount[1]).innerText;
+    let like = (<HTMLElement>actionCount[3]).innerText;
+    let text=(<HTMLBodyElement>item.getElementsByClassName("TweetTextSize")[0]).innerText;
+    let contain_rapper = item.getElementsByClassName("AdaptiveMedia-container")[0];
+    let src = contain_rapper === undefined?[""]:this.searchImgs(contain_rapper.children[0]);
+    return {src:src,text:text,rt:rt,like:like,screenName:screenName,id:id};
   }
 
   searchImgs(contain:Element):string[]{
@@ -69,14 +77,19 @@ export class ImageService {
     Array.from( contain.children ).forEach(half => {
       Array.from( half.children ).forEach(photo =>{
         let tmpImg = this.searchImgsRecuicive(<HTMLImageElement>photo);
-        imgs.push(tmpImg);
+        if(tmpImg !== undefined){
+          imgs.push(tmpImg);
+        }
       });
     });
     return imgs;
   }
 
   searchImgsRecuicive(img:HTMLImageElement):string{
-    if(img.src === undefined){
+    if(img === undefined){
+      return;
+    }
+    else if(img.src === undefined){
       return this.searchImgsRecuicive(<HTMLImageElement>img.children[0]);
     } else {
       return img.src

@@ -23,7 +23,9 @@
               "src/assets",
               "src/manifest.json",
               "src/injection.js",
-              "src/materialized.min.css"
+              "src/materialized.min.css",
+              "src/icon.css",
+              "src/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2"
             ],
             "styles": [
               "src/styles.css"

@@ -24,14 +24,20 @@ export class ImageComponent  {
   caption:string="";
   isMulti:boolean;
   isHaveMedia:boolean;
+  rt:string;
+  like:string;
+  screenName:string;
   constructor(private http:Http,private sanitizer: DomSanitizer,private service:ImageService,){//private auth:AuthService,private router:Router){
   }
   @Input()
   set tweet(tweet: object){
     this._tweet = tweet;
-    this.id = this._tweet["id_str"];
+    this.id = this._tweet["id"];
     this.url = this._tweet['src'];
+    this.rt = this._tweet['rt'];
+    this.like = this._tweet['like'];
     this.caption = this._tweet['text'].replace(/https:.*/,"");
+    this.screenName = this._tweet['screenName'];
   }
   getTag(tweet):undefined{
 
