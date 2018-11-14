@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {HttpModule} from '@angular/http';
 import { ImageService } from './image.service';
 import { TestComponent } from './test/test.component';
+import { ChromeExtentionService } from './chrome-extention.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { TestComponent } from './test/test.component';
     HttpModule,
     HttpClientModule,
   ],
-  providers: [ImageService],
+  providers: [ImageService,ChromeExtentionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
